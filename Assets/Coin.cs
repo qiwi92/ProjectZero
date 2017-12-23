@@ -8,5 +8,6 @@ namespace Assets
         public float Timer;
         public Vector3 RandomDirection;
         public float RandomSpread;
+        public float RandomSpeed;
     }
 }

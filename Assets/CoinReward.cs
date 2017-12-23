@@ -30,6 +30,7 @@ namespace Assets
 
             SpawnOnMouseClick();
 
+            
             foreach (var coin in Coins)
             {
                 Vector3 direction = Vector3.Normalize(Player.transform.position - coin.GameObject.transform.position);
@@ -45,8 +46,8 @@ namespace Assets
                 {
                     coin.RandomDirection = Vector3.zero;
                 }
-                
-                coin.GameObject.transform.Translate((direction + coin.RandomDirection )* Time.deltaTime * coinSpeed);
+
+                coin.GameObject.transform.Translate((direction* coin.RandomSpeed + coin.RandomDirection )* Time.deltaTime * coinSpeed);
 
                 var distanceToPlayer = Vector3.Distance(Player.transform.position,coin.GameObject.transform.position);
                 if (distanceToPlayer < 0.3)
@@ -78,8 +79,9 @@ namespace Assets
                         GameObject = Instantiate(CoinPrefab, pz, Quaternion.identity),
                         Timer = 0,
                         RandomDirection = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0),
-                        RandomSpread = Random.Range(0.05f, 1)
-                    };
+                        RandomSpread = Random.Range(0.05f, 1),
+                        RandomSpeed = Random.Range(0.4f, 1.2f)
+                };
                     Debug.Log("Hello" + randomAngle);
                     Coins.Add(newCoin);
                 }
@@ -87,7 +89,7 @@ namespace Assets
         }
 
 
-        public void Spawn(Enemy enemy,int amount)
+        public void Spawn(Vector3 position,int amount)
         {
              for (int i = 0; i < amount; i++)
              {
@@ -95,10 +97,11 @@ namespace Assets
 
                  Coin newCoin = new Coin
                  {
-                     GameObject = Instantiate(CoinPrefab,enemy.enemyPrefab.transform.position , Quaternion.identity),
+                     GameObject = Instantiate(CoinPrefab,position , Quaternion.identity),
                      Timer = 0,
                      RandomDirection = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0),
-                     RandomSpread = Random.Range(0.05f, 1)
+                     RandomSpread = Random.Range(0.05f, 1),
+                     RandomSpeed = Random.Range(0.4f, 1.2f)
                  };
                  Debug.Log("Hello" + randomAngle);
                  Coins.Add(newCoin);
