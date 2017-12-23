@@ -13,8 +13,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - Ship
+  - Shield
   - 
   - 
   - 
@@ -40,4 +40,13 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Shield
+    uniqueID: 4121610299
+    locked: 0
+  - name: Ship
+    uniqueID: 3867999921
+    locked: 0
+  - name: New Layer
+    uniqueID: 1266200085
     locked: 0

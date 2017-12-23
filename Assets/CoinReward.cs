@@ -15,14 +15,26 @@ namespace Assets
         public float coinSpeed;
         public float coinForceTime;
 
+        public NumberFormatter NumberFormatter;
+
+
+        public UnityEngine.UI.Text CoinText;
+
+        [HideInInspector] public int coinAmount;
+
         private List<Coin> _collectedCoins;
 
 
+        public AudioSource CoinAudioSource;
+        public AudioSource SpwanAudioSource;
 
         void Start ()
         {
             Coins = new List<Coin>();
             _collectedCoins = new List<Coin>();
+
+            coinAmount = 0;
+            NumberFormatter = new NumberFormatter();
         }
 	
         // Update is called once per frame
@@ -53,9 +65,12 @@ namespace Assets
                 if (distanceToPlayer < 0.3)
                 {
                     _collectedCoins.Add(coin);
+                    coin.CollectSound.Play();
+                    coinAmount += 100;
                 }
             }
 
+            CoinText.text = NumberFormatter.Format(coinAmount);
             DeleteCollectedCoins(_collectedCoins);
 
 
@@ -70,6 +85,7 @@ namespace Assets
 
             if (Input.GetMouseButtonDown(0))
             {
+                SpwanAudioSource.Play();
                 for (int i = 0; i < CoinsOnClick; i++)
                 {
                     float randomAngle = Random.Range(0, 2 * Mathf.PI);
@@ -80,7 +96,8 @@ namespace Assets
                         Timer = 0,
                         RandomDirection = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0),
                         RandomSpread = Random.Range(0.05f, 1),
-                        RandomSpeed = Random.Range(0.4f, 1.2f)
+                        RandomSpeed = Random.Range(0.4f, 1.2f),
+                        CollectSound = CoinAudioSource
                 };
                     Debug.Log("Hello" + randomAngle);
                     Coins.Add(newCoin);
@@ -101,7 +118,8 @@ namespace Assets
                      Timer = 0,
                      RandomDirection = new Vector3(Mathf.Sin(randomAngle), Mathf.Cos(randomAngle), 0),
                      RandomSpread = Random.Range(0.05f, 1),
-                     RandomSpeed = Random.Range(0.4f, 1.2f)
+                     RandomSpeed = Random.Range(0.4f, 1.2f),
+                     CollectSound = CoinAudioSource
                  };
                  Debug.Log("Hello" + randomAngle);
                  Coins.Add(newCoin);

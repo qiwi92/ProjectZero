@@ -9,5 +9,6 @@ namespace Assets
         public Vector3 RandomDirection;
         public float RandomSpread;
         public float RandomSpeed;
+        public AudioSource CollectSound;
     }
 }
