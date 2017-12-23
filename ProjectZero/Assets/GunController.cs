@@ -177,31 +177,6 @@ namespace Assets
         }
 
 
-
-
-        //rework
-        public void resetKilled()
-        {
-            
-
-            if (enemyToKillId > 0 || enemyToKillId < EnemyController.enemyCount)
-            {
-                Debug.Log("EnemyToKillId: " + enemyToKillId);
-                Enemy killedEnemy = EnemyController.enemies[enemyToKillId];
-                EnemyController.Reset(killedEnemy);
-            }
-            else
-            {
-                Debug.Log("Hello");
-            }
-        }
-
-        public void setKilledId()
-        {
-            enemyToKillId = closestEnemyId;
-        }
-
-
         private void destroyDeadBullets()
         {       
             if (deadBullets.Count > 0)
@@ -211,6 +186,7 @@ namespace Assets
                     bullets.Remove(deadBullet);
                     Destroy(deadBullet.bulletPrefab);
                 }
+                
             }
         }
 

@@ -7,6 +7,10 @@ public class TogglePanel : MonoBehaviour {
     public GameObject panel;
     public UnityEngine.UI.Button panelButton;
 
+    public GameObject camera;
+
+    private bool _panelIsActive = false;
+
     public void Start()
     {
         UnityEngine.UI.Button btn = panelButton.GetComponent<UnityEngine.UI.Button>();
@@ -17,5 +21,7 @@ public class TogglePanel : MonoBehaviour {
     {
         panel.SetActive(!panel.activeSelf);
     }
+
+
 }
 

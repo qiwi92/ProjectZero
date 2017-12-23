@@ -6,11 +6,9 @@ using System.Linq;
 namespace Assets
 {
     public class DebreeController : MonoBehaviour {
-    
-        
-    
-        public int itemCount;
-        public int activeItemCount;
+
+        public int ItemCount;
+        public int ActiveItemCount;
 
         public float width;
         public float height;
@@ -31,12 +29,9 @@ namespace Assets
             public GameObject Prefab;
         }
 
-
-        public List<Item> inactiveItems;
-        public List<Item> items;
-        public List<Item> notCatchedItems;
-        public List<int> notCatchedIds;
-
+        public List<Item> Items;
+        public List<int> ActiveItemIds;
+        public List<Item> InactiveItems;
 
 
         private ItemIds dropedItem;
@@ -44,91 +39,69 @@ namespace Assets
         private Item itemPlaceholder;
     
     
-        public void SetUp () {
+        public void SetUp ()
+        {
 
             var aItem = ItemPrefabs[1].Prefab;
 
-            inactiveItems = new List<Item>();
-            items = new List<Item>();
-            notCatchedItems = new List<Item>();
-            notCatchedIds = new List<int>();
 
-            for (int i = 0; i < itemCount; i++)
-            {
-                var randomNum = (int) Random.Range(0, 10000);
-                var randomSpeed = Random.Range(0.9f, 1.1f);
+            Items = new List<Item>();
+            InactiveItems = new List<Item>();
 
-                ItemIds itemType = GetItemId(randomNum);
-                GameObject prefab = GetPrefab(itemType);
-
-                inactiveItems.Add(new Item(itemType, Instantiate(prefab), randomSpeed));
-    
-            }
-
-            foreach (var item in inactiveItems)
-            {
-                SetInactive(item);
-            }
-            
-
-            for(int i =0; i<activeItemCount; i++)
-            {
-                var randomItemId = (int)Random.Range(0, inactiveItems.Count);
-
-                items.Add(inactiveItems[randomItemId]);
-            }
-
-            foreach (var item in items)
-            {
-                Reset(item);
-            }
         }
     	
+
+
+
     	void Update ()
         {
- 
+            if (ItemCount < ActiveItemCount)
+            {
+                for (int i = 0; i < ActiveItemCount - ItemCount;i++)
+                {
+                    var randomNum = (int)Random.Range(0, 10000);
+                    var randomSpeed = Random.Range(0.9f, 1.1f);
 
-    		foreach(var item in items)
+                    ItemIds itemType = GetItemId(randomNum);
+                    GameObject prefab = GetPrefab(itemType);
+                    Item newItem = new Item(itemType, Instantiate(prefab), randomSpeed);
+                    Reset(newItem);
+                    Items.Add(newItem);
+                    ItemCount += 1;
+                }
+            }
+
+            foreach (var item in Items)
             {
                 if (item.itemPrefab.transform.position.y < -height)
                 {
-                    inactiveItems.Add(item);
-                    notCatchedItems.Add(item);
-
+                    InactiveItems.Add(item);
+                    ItemCount -= 1;
                 }
 
-                item.itemPrefab.transform.position += Vector3.down*Time.deltaTime*speedFactor*item.speed;
+                Move(item);
+
+                
             }
 
-            if (items.Count < activeItemCount)
-            {
-                var activeItems = items.Count;
-                for (int i = 0; i < activeItemCount - activeItems; i++)
-                {
-                    var randomItemId = (int)Random.Range(0, inactiveItems.Count);
-
-                    items.Add(inactiveItems[randomItemId]);
-                }
-            }
-
-            if (notCatchedItems.Count > 0)
-            {
-                foreach (var item in notCatchedItems)
-                {
-                    notCatchedItems.Remove(item);
-                    Destroy(item.itemPrefab);
-                }
-            }
+            DestroyItems();
 
         }
 
-
-
-
-        public void SetInactive(Item item)
+        public void DestroyItems()
         {
-           item.itemPrefab.transform.position = new Vector3(0, height, 0);                 
+            if (InactiveItems.Count > 0)
+            {
+                foreach (var inactiveItem in InactiveItems)
+                {
+                    Items.Remove(inactiveItem);
+                    Destroy(inactiveItem.itemPrefab);
+                }
+            }
+            
         }
+
+
 
         public void Reset(Item item)
         {
@@ -136,6 +109,11 @@ namespace Assets
             float x = Random.Range(-width / 2, width / 2);
 
             item.itemPrefab.transform.position = new Vector3(x, height / 2 + y, 0);
+        }
+
+        public void Move(Item item)
+        {
+            item.itemPrefab.transform.position += Vector3.down * Time.deltaTime * item.speed;
         }
 
 

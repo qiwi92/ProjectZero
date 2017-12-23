@@ -56,16 +56,16 @@ namespace Assets
 
             float minDistance = float.MaxValue;
 
-            for (var itemId = 0; itemId < DebreeController.items.Count; itemId++)
+            for (var itemId = 0; itemId < DebreeController.Items.Count; itemId++)
             {
-                var itemPosition = DebreeController.items[itemId].itemPrefab.transform.position;
+                var itemPosition = DebreeController.Items[itemId].itemPrefab.transform.position;
 
                 var distance = Vector3.SqrMagnitude(itemPosition - playerPosition);
 
                 if (distance < minDistance)
                 {
                     minDistance = distance;
-                    closestItem = DebreeController.items[itemId];
+                    closestItem = DebreeController.Items[itemId];
                     closestItemId = itemId;
                 }
             }
@@ -77,7 +77,7 @@ namespace Assets
             if (Vector3.Distance(playerPosition, closestItemPosition) < 0.8)
             {
                 DebreeController.Reset(closestItem);
-                DebreeController.items[closestItemId].itemPrefab.GetComponent<AudioSource>().Play();
+                DebreeController.Items[closestItemId].itemPrefab.GetComponent<AudioSource>().Play();
 
 
                 if (closestItem.id == ItemIds.stone)
