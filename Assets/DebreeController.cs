@@ -60,7 +60,7 @@ namespace Assets
                 for (int i = 0; i < ActiveItemCount - ItemCount;i++)
                 {
                     var randomNum = (int)Random.Range(0, 10000);
-                    var randomSpeed = Random.Range(0.9f, 1.1f);
+                    var randomSpeed = Random.Range(0.9f, 2.1f);
 
                     ItemIds itemType = GetItemId(randomNum);
                     GameObject prefab = GetPrefab(itemType);
@@ -78,10 +78,7 @@ namespace Assets
                     InactiveItems.Add(item);
                     ItemCount -= 1;
                 }
-
-                Move(item);
-
-                
+                Move(item);      
             }
 
             DestroyItems();

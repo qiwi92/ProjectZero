@@ -9,6 +9,7 @@ namespace Assets
     public class GunController : MonoBehaviour {
     
         public GameObject BulletPrefab;
+        public CoinReward Coins;
 
         public AudioSource laserSound;
 
@@ -150,8 +151,9 @@ namespace Assets
                         if(distanceToPlayer < 1.5)
                         {
                             shielAnimator.Play("ShieldHit",0,-1f);
+                            
                         }
-                        
+                        Coins.Spawn(enemy,3);
                         enemy.enemyPrefab.explotionSound.Play();
                     }
                     
