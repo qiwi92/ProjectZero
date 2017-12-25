@@ -151,7 +151,7 @@ namespace Assets
                             shielAnimator.Play("ShieldHit",0,-1f);
                             
                         }
-                        //Coins.Spawn(enemy,3);
+                        Coins.Spawn(enemy.enemyPrefab.transform.position,9);
                         enemy.enemyPrefab.explotionSound.Play();
                     }
                     

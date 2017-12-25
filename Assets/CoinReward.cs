@@ -11,9 +11,9 @@ namespace Assets
         public GameObject CoinPrefab;
 
         public List<Coin> Coins;
-        public float coinSpread;
-        public float coinSpeed;
-        public float coinForceTime;
+        public float CoinSpread;
+        public float CoinSpeed;
+        public float CoinForceTime;
 
         public NumberFormatter NumberFormatter;
 
@@ -37,21 +37,21 @@ namespace Assets
             NumberFormatter = new NumberFormatter();
         }
 	
-        // Update is called once per frame
+
         void Update () {
 
-            SpawnOnMouseClick();
+            //SpawnOnMouseClick();
 
             
             foreach (var coin in Coins)
             {
                 Vector3 direction = Vector3.Normalize(Player.transform.position - coin.GameObject.transform.position);
 
-                if (coin.Timer < coinForceTime)
+                if (coin.Timer < CoinForceTime)
                 {
-                    coin.RandomDirection -= coin.RandomDirection*Mathf.Sin(coin.Timer)/(coinSpread * coin.RandomSpread);
+                    coin.RandomDirection -= coin.RandomDirection*Mathf.Sin(coin.Timer)/(CoinSpread * coin.RandomSpread);
 
-                    Debug.Log(Mathf.Cos(coin.Timer) / (coinSpread * coin.RandomSpread));
+                    Debug.Log(Mathf.Cos(coin.Timer) / (CoinSpread * coin.RandomSpread));
                     coin.Timer += 0.01f;
                 }
                 else
@@ -59,7 +59,7 @@ namespace Assets
                     coin.RandomDirection = Vector3.zero;
                 }
 
-                coin.GameObject.transform.Translate((direction* coin.RandomSpeed + coin.RandomDirection )* Time.deltaTime * coinSpeed);
+                coin.GameObject.transform.Translate((direction* coin.RandomSpeed + coin.RandomDirection )* Time.deltaTime * CoinSpeed);
 
                 var distanceToPlayer = Vector3.Distance(Player.transform.position,coin.GameObject.transform.position);
                 if (distanceToPlayer < 0.3)
