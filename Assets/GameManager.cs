@@ -16,9 +16,8 @@ namespace Assets
         public GunController GunController;
         public shieldController shieldController;
         public Enemy Enemy;
-        [HideInInspector] public Cash Cash;
-        public CoinReward CoinReward;
-        public CashDisplay CashDisplay;
+
+
         
         public Shop Shop;
 
@@ -42,14 +41,7 @@ namespace Assets
             shieldController.EnemyController = EnemyController;
             shieldController.Player = PlayerMovementController;
 
-            //Load from savegame
-            Cash = new Cash()
-            {
-                Amount = 1000
-            };
-            CoinReward.Cash = Cash;
-            CashDisplay.Cash = Cash;
-            Shop.Cash = Cash;
+
 
 
         }

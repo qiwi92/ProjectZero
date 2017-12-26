@@ -18,7 +18,7 @@ namespace Assets
         public NumberFormatter NumberFormatter;
         
         [HideInInspector] public int coinAmount;
-        [HideInInspector] public Cash Cash;
+
 
         private List<Coin> _collectedCoins;
 
@@ -62,7 +62,7 @@ namespace Assets
                 {
                     _collectedCoins.Add(coin);
                     coin.CollectSound.Play();
-                    Cash.Amount += 100;
+                    GameControl.Control.Cash += 100;
                 }
             }
 

@@ -10,8 +10,6 @@ namespace Assets
 {
     public class Shop : MonoBehaviour
     {
-
-
         public List<ShopItem> ShopItems;
 
         public List<UpgradeButton> UpgradeButtons;
@@ -22,12 +20,7 @@ namespace Assets
 
         public GameObject ButtonPrefab;
 
-        [HideInInspector] public Cash Cash;
         [HideInInspector] public NumberFormatter NumberFormatter = new NumberFormatter();
-
-
-
-
 
         void Start()
         {
@@ -56,9 +49,9 @@ namespace Assets
 
         public void Purchase(ShopItem shopItem)
         {
-            if ( shopItem.UpgradePrice <= Cash.Amount)
+            if ( shopItem.Price <= GameControl.Control.Cash)
             {
-                Cash.Amount -= (int)shopItem.UpgradePrice;
+                GameControl.Control.Cash -= shopItem.Price;
                 shopItem.NumUpgrades += 1;
                 shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.NumUpgrades);
                 SetProgessBar(shopItem);
@@ -72,9 +65,9 @@ namespace Assets
 
             shopItem.UpgradeButton = shopItem.Prefab.GetComponent<UpgradeButton>();
 
-            shopItem.UpgradeButton.Icon.sprite = shopItem.UpgradeIcon;
-            shopItem.UpgradeButton.NameText.text = shopItem.UpgradeName;
-            shopItem.UpgradeButton.PriceText.text = NumberFormatter.Format(shopItem.UpgradePrice);
+            shopItem.UpgradeButton.Icon.sprite = shopItem.Icon;
+            shopItem.UpgradeButton.NameText.text = shopItem.Name;
+            shopItem.UpgradeButton.PriceText.text = NumberFormatter.Format(shopItem.Price);
             shopItem.BarImage = shopItem.UpgradeButton.Bar;
             shopItem.Prefab.transform.SetParent(ContentPanel);
         }

@@ -35,8 +35,6 @@ namespace Assets
         private float bulletSpeed;
 
 
-        private int killCount;
-
         public UnityEngine.UI.Text killScore;
 
         private List<Bullet> deadBullets;
@@ -53,9 +51,6 @@ namespace Assets
 
         void Start ()
         {
-            killCount = 0;
-
-
             bullets = new List<Bullet>();
             deadBullets = new List<Bullet>();
 
@@ -147,7 +142,7 @@ namespace Assets
                     if(enemy.isDead == false)
                     {
                         enemy.isDead = true;
-                        killCount += 1;
+                        GameControl.Control.Kills += 1;
                         enemy.enemyPrefab.killAnimation.SetTrigger("Explotion");
 
                         if(distanceToPlayer < 1.5)
@@ -176,7 +171,7 @@ namespace Assets
 
             destroyDeadBullets();
 
-            killScore.text = NumberFormtter.Format(killCount);
+
 
         }
 
