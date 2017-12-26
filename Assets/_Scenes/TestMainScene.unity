@@ -257,7 +257,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
@@ -852,7 +852,7 @@ Prefab:
     - target: {fileID: 224689310526674260, guid: 43ccb34cc2a937e49819b97f6332aab4,
         type: 2}
       propertyPath: m_AnchoredPosition.x
-      value: 511.35004
+      value: 512
       objectReference: {fileID: 0}
     - target: {fileID: 224689310526674260, guid: 43ccb34cc2a937e49819b97f6332aab4,
         type: 2}
@@ -862,7 +862,7 @@ Prefab:
     - target: {fileID: 224689310526674260, guid: 43ccb34cc2a937e49819b97f6332aab4,
         type: 2}
       propertyPath: m_SizeDelta.x
-      value: 1036
+      value: 1026
       objectReference: {fileID: 0}
     - target: {fileID: 224689310526674260, guid: 43ccb34cc2a937e49819b97f6332aab4,
         type: 2}
@@ -936,8 +936,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 13.099976, y: 0}
-  m_SizeDelta: {x: -13.1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: -4, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &370659625
 MonoBehaviour:
@@ -989,17 +989,36 @@ MonoBehaviour:
   - UpgradeName: Motor
     UpgradePrice: 2
     UpgradeIcon: {fileID: 21300000, guid: 8f31803efa7f01c4b84ca8f3c9762969, type: 3}
+    BarImage: {fileID: 0}
+    NumUpgrades: 0
+    UpgradeButton: {fileID: 0}
+    Prefab: {fileID: 0}
   - UpgradeName: Shield
     UpgradePrice: 200
     UpgradeIcon: {fileID: 21300000, guid: 8f31803efa7f01c4b84ca8f3c9762969, type: 3}
+    BarImage: {fileID: 0}
+    NumUpgrades: 0
+    UpgradeButton: {fileID: 0}
+    Prefab: {fileID: 0}
   - UpgradeName: Gun
     UpgradePrice: 300
     UpgradeIcon: {fileID: 21300000, guid: 8f31803efa7f01c4b84ca8f3c9762969, type: 3}
+    BarImage: {fileID: 0}
+    NumUpgrades: 0
+    UpgradeButton: {fileID: 0}
+    Prefab: {fileID: 0}
   - UpgradeName: Other
     UpgradePrice: 2400
     UpgradeIcon: {fileID: 21300018, guid: df5e121e6bb60d041afa786559a2b3fb, type: 3}
+    BarImage: {fileID: 0}
+    NumUpgrades: 0
+    UpgradeButton: {fileID: 0}
+    Prefab: {fileID: 0}
+  UpgradeButtons: []
   ContentPanel: {fileID: 370659624}
   ButtonObjectPool: {fileID: 714755271}
+  ButtonPrefab: {fileID: 1323690761159894, guid: 43ccb34cc2a937e49819b97f6332aab4,
+    type: 2}
 --- !u!1 &434324461
 GameObject:
   m_ObjectHideFlags: 0
@@ -1098,8 +1117,9 @@ MonoBehaviour:
   PlayerMovementController: {fileID: 1465449509}
   GunController: {fileID: 1478597072}
   shieldController: {fileID: 95376345}
-  CoinReward: {fileID: 0}
-  CashDisplay: {fileID: 0}
+  CoinReward: {fileID: 734928815}
+  CashDisplay: {fileID: 1433040147}
+  Shop: {fileID: 370659627}
   UiText: {fileID: 0}
 --- !u!4 &435900008
 Transform:
@@ -1558,12 +1578,12 @@ RectTransform:
   m_Children:
   - {fileID: 855149469}
   m_Father: {fileID: 1786818644}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -36.2}
-  m_SizeDelta: {x: -44.2, y: -127.6}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: -52}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &599217444
 MonoBehaviour:
@@ -1805,8 +1825,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 8.5, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 26, y: 0}
+  m_SizeDelta: {x: -52, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &855149470
 MonoBehaviour:
@@ -2170,8 +2190,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 0, y: 5.4}
+  m_SizeDelta: {x: 0, y: -10.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1272962462
 MonoBehaviour:
@@ -2194,10 +2214,10 @@ MonoBehaviour:
       Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
   m_FontData:
     m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 50
+    m_FontSize: 40
     m_FontStyle: 1
     m_BestFit: 0
-    m_MinSize: 5
+    m_MinSize: 0
     m_MaxSize: 50
     m_Alignment: 4
     m_AlignByGeometry: 0
@@ -3291,12 +3311,12 @@ RectTransform:
   m_Children:
   - {fileID: 1272962461}
   m_Father: {fileID: 1786818644}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -11.949951}
-  m_SizeDelta: {x: -436.1, y: 176.1}
+  m_AnchoredPosition: {x: -0.000015259, y: 0}
+  m_SizeDelta: {x: -605.7, y: 129.7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1740511418
 MonoBehaviour:
@@ -3359,8 +3379,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 1740511417}
   - {fileID: 599217443}
+  - {fileID: 1740511417}
   m_Father: {fileID: 1799063720}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

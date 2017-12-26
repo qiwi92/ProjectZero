@@ -19,8 +19,8 @@ namespace Assets
         [HideInInspector] public Cash Cash;
         public CoinReward CoinReward;
         public CashDisplay CashDisplay;
-
-        //public UpgradeButton UpgradeButton;
+        
+        public Shop Shop;
 
         public UiText UiText;
 
@@ -48,9 +48,9 @@ namespace Assets
                 Amount = 1000
             };
             CoinReward.Cash = Cash;
-
             CashDisplay.Cash = Cash;
-            //UpgradeButton.Cash = Cash;
+            Shop.Cash = Cash;
+
 
         }
 
