@@ -71,7 +71,7 @@ namespace Assets
              closestEnemyId = GetClosestEnemyId(EnemyController.enemies, GunRange);
 
             
-            if (closestEnemyId >= 0 && timer >= 0.1f)
+            if (closestEnemyId >= 0 && timer >= 0.2f)
             {
                 Enemy closestEnemy = EnemyController.enemies[closestEnemyId];
 
