@@ -58,7 +58,6 @@ namespace Assets
         {
             if ( shopItem.UpgradePrice <= Cash.Amount)
             {
-
                 Cash.Amount -= (int)shopItem.UpgradePrice;
                 shopItem.NumUpgrades += 1;
                 shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.NumUpgrades);
