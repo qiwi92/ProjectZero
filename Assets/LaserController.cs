@@ -15,7 +15,7 @@ namespace Assets
         private int closestEnemyId;
         private GameObject closestEnemy;
 
-        public UnityEngine.UI.Text killScore;
+        public UnityEngine.UI.Text KillScore;
         private int killCount;
 
         public GameObject LaserBall;
@@ -100,7 +100,7 @@ namespace Assets
                 LineRenderer.SetWidth(0, 0);
             }
 
-            killScore.text = "Enemies killed: " + killCount;
+            KillScore.text = killCount.ToString();
 
         }
 

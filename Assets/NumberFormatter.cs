@@ -33,7 +33,7 @@ namespace Assets
                 return (number / 1e18).ToString("0.00") + " Q";
             }
 
-            return  number.ToString("0.00");
+            return  number.ToString("0");
         }
     }
 }

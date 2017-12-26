@@ -6,7 +6,7 @@ namespace Assets
     public class ShopItem
     {
         public string UpgradeName;
-        public float UpgradePrice = 1f;
+        public float UpgradePrice;
         public Sprite UpgradeIcon;
     }
 }

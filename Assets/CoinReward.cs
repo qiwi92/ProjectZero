@@ -16,11 +16,9 @@ namespace Assets
         public float CoinForceTime;
 
         public NumberFormatter NumberFormatter;
-
-
-        public UnityEngine.UI.Text CoinText;
-
+        
         [HideInInspector] public int coinAmount;
+        [HideInInspector] public Cash Cash;
 
         private List<Coin> _collectedCoins;
 
@@ -45,13 +43,11 @@ namespace Assets
             
             foreach (var coin in Coins)
             {
-                Vector3 direction = Vector3.Normalize(Player.transform.position - coin.GameObject.transform.position);
+                var direction = Vector3.Normalize(Player.transform.position - coin.GameObject.transform.position);
 
                 if (coin.Timer < CoinForceTime)
                 {
                     coin.RandomDirection -= coin.RandomDirection*Mathf.Sin(coin.Timer)/(CoinSpread * coin.RandomSpread);
-
-                    Debug.Log(Mathf.Cos(coin.Timer) / (CoinSpread * coin.RandomSpread));
                     coin.Timer += 0.01f;
                 }
                 else
@@ -66,14 +62,11 @@ namespace Assets
                 {
                     _collectedCoins.Add(coin);
                     coin.CollectSound.Play();
-                    coinAmount += 100;
+                    Cash.Amount += 100;
                 }
             }
 
-            CoinText.text = NumberFormatter.Format(coinAmount);
             DeleteCollectedCoins(_collectedCoins);
-
-
         }
 
 
@@ -85,7 +78,7 @@ namespace Assets
 
             if (Input.GetMouseButtonDown(0))
             {
-                SpwanAudioSource.Play();
+                
                 for (int i = 0; i < CoinsOnClick; i++)
                 {
                     float randomAngle = Random.Range(0, 2 * Mathf.PI);
@@ -108,6 +101,7 @@ namespace Assets
 
         public void Spawn(Vector3 position,int amount)
         {
+             SpwanAudioSource.Play();
              for (int i = 0; i < amount; i++)
              {
                  float randomAngle = Random.Range(0, 2 * Mathf.PI);

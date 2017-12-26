@@ -5,16 +5,21 @@ using UnityEngine.UI;
 
 namespace Assets
 {
-    public class UpgradeListController : MonoBehaviour
+    public class Shop : MonoBehaviour
     {
 
         public List<ShopItem> ShopItems;
+
+
         public Transform ContentPanel;
         public ButtonObjectPool ButtonObjectPool;
 
         void Start()
         {
             RefreshDisplay();
+
+            
+
         }
 
         public void RefreshDisplay()

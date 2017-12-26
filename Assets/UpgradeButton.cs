@@ -11,18 +11,20 @@ public class UpgradeButton : MonoBehaviour
     public Text NameText;
     public Text PriceText;
 
+    [HideInInspector] public Cash Cash;
+
     private NumberFormatter NumberFormatter = new NumberFormatter();
 
     public Image Icon;
 
     private ShopItem _shopItem;
-    private UpgradeListController _upgradeList;
+    private Shop _upgradeList;
 
 	void Start () {
-		
+		//Button.onClick.AddListener(Purchase);
 	}
 
-    public void Setup(ShopItem currentItem, UpgradeListController currentUpgradeList)
+    public void Setup(ShopItem currentItem, Shop currentUpgradeList)
     {
         _shopItem = currentItem;
         NameText.text = _shopItem.UpgradeName;
@@ -30,6 +32,14 @@ public class UpgradeButton : MonoBehaviour
         Icon.sprite = _shopItem.UpgradeIcon;
 
         _upgradeList = currentUpgradeList;
+    }
+
+    public void Purchase()
+    {
+        if (_shopItem.UpgradePrice > Cash.Amount)
+        {
+            Cash.Amount -= (int) _shopItem.UpgradePrice;
+        }
     }
 
 }

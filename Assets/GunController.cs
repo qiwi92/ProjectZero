@@ -20,12 +20,14 @@ namespace Assets
         public float speedFactor;
         public float offsetFactor;
 
+
         private float timer = 0;
 
 
         [HideInInspector] public EnemyController EnemyController;
         [HideInInspector] public PlayerMovementController Player;
         [HideInInspector] public LaserController LaserController;
+        [HideInInspector] public Cash Cash;
 
         private float enemySpeed;
         private Vector3 enemyVelocity;
@@ -46,6 +48,8 @@ namespace Assets
 
         private float killTimer = 0;
         private bool triggered = false;
+
+        private NumberFormatter NumberFormtter = new NumberFormatter();
 
         void Start ()
         {
@@ -172,7 +176,7 @@ namespace Assets
 
             destroyDeadBullets();
 
-            killScore.text = "Enemies killed: " + killCount;
+            killScore.text = NumberFormtter.Format(killCount);
 
         }
 
