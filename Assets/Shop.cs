@@ -24,12 +24,30 @@ namespace Assets
 
         void Start()
         {
+            SetShop();
+
             RefreshDisplay();
 
             foreach (var shopitem in ShopItems)
             {
                 shopitem.UpgradeButton.Button.onClick.AddListener(() => Purchase(shopitem));
             }
+        }
+
+        private void SetShop()
+        {
+            ShopItems = new List<ShopItem>()
+            {
+                new ShopItem() { ItemType = ShopItemType.GunFireRate },
+                new ShopItem() { ItemType = ShopItemType.GunDamage }
+            };
+
+            foreach (var shopItem in ShopItems)
+            {
+                shopItem.SetShopItem();
+                shopItem.UpdateItem();
+            }
+            
         }
 
         public void RefreshDisplay()
@@ -45,15 +63,19 @@ namespace Assets
             }
         }
 
-
+  
 
         public void Purchase(ShopItem shopItem)
         {
             if ( shopItem.Price <= GameControl.Data.Cash)
             {
                 GameControl.Data.Cash -= shopItem.Price;
-                shopItem.NumUpgrades += 1;
-                shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.NumUpgrades);
+
+                shopItem.Level +=1;
+                shopItem.UpdateItem();
+
+                shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.Level);
+                shopItem.UpgradeButton.PriceText.text = NumberFormatter.Format(shopItem.Price);
                 SetProgessBar(shopItem);
             }
         }
@@ -62,20 +84,21 @@ namespace Assets
         public void ShopItemSetup(ShopItem shopItem)
         {
             shopItem.Prefab = Instantiate(ButtonPrefab);
-
             shopItem.UpgradeButton = shopItem.Prefab.GetComponent<UpgradeButton>();
-
-            shopItem.UpgradeButton.Icon.sprite = shopItem.Icon;
             shopItem.UpgradeButton.NameText.text = shopItem.Name;
+            shopItem.UpgradeButton.Icon.sprite = shopItem.Icon;
             shopItem.UpgradeButton.PriceText.text = NumberFormatter.Format(shopItem.Price);
             shopItem.BarImage = shopItem.UpgradeButton.Bar;
             shopItem.Prefab.transform.SetParent(ContentPanel);
+
+            shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.Level);
+            SetProgessBar(shopItem);
         }
 
 
         public void SetProgessBar(ShopItem shopItem)
         {
-            shopItem.BarImage.fillAmount =  ((float) shopItem.NumUpgrades)/10;
+            shopItem.BarImage.fillAmount =  ((float) shopItem.Level)/10;
         }
     }
 }

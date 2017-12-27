@@ -71,7 +71,7 @@ namespace Assets
              closestEnemyId = GetClosestEnemyId(EnemyController.enemies, GunRange);
 
             
-            if (closestEnemyId >= 0 && timer >= 0.2f)
+            if (closestEnemyId >= 0 && timer >= Gun.FireRate())
             {
                 Enemy closestEnemy = EnemyController.enemies[closestEnemyId];
 
@@ -109,7 +109,7 @@ namespace Assets
                         if (distance < 0.5)
                         {
                             deadBullets.Add(bullets[i]);
-                            enemy.hp -= 1;
+                            enemy.hp -= Gun.Damage();
                             
                         }
                     }

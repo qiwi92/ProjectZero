@@ -6,14 +6,14 @@ namespace Assets
 {
     public class Enemy
     {
-        public int hp;
-        public int maxHp;
+        public float hp;
+        public float maxHp;
         public EnemyPrefabController enemyPrefab;
         public float timer;
         public bool isDead;
         public bool hitPlayer;
 
-        public Enemy(int _hp, int _maxHp, EnemyPrefabController _enemyPrefab, float _timer, bool _isDead, bool _hitPlayer)
+        public Enemy(float _hp, float _maxHp, EnemyPrefabController _enemyPrefab, float _timer, bool _isDead, bool _hitPlayer)
         {
             hp = _hp;
             maxHp = _maxHp;

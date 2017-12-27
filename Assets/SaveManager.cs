@@ -22,8 +22,17 @@ namespace Assets
 
         private void Start()
         {
+            GetSaveState();
+        }
+
+        private void GetSaveState()
+        {
             GameControl.Data.Cash = State.Cash;
             GameControl.Data.Kills = State.Kills;
+
+            Gun.FireRateLevel = State.FireRateLevel;
+            Gun.DamageLevel = State.DamageLevel;
+
         }
 
         private void OnDisable()
@@ -33,7 +42,7 @@ namespace Assets
 
         public void Save()
         {
-            SetState();
+            SetSaveState();
             PlayerPrefs.SetString("save", Helper.Serialize<SaveState>(State));
         }
 
@@ -51,12 +60,25 @@ namespace Assets
             }
         }
 
-        public void SetState()
+        public void SetSaveState()
         {
             State.Cash = GameControl.Data.Cash;
             State.Kills = GameControl.Data.Kills;
+
+            State.FireRateLevel = Gun.FireRateLevel;
+            State.DamageLevel = Gun.DamageLevel;
         }
 
+
+        void OnGUI()
+        {
+            //Delete all of the PlayerPrefs settings by pressing this Button
+            if (GUI.Button(new Rect(100, 200, 200, 60), "Reset Data"))
+            {
+                State = new SaveState();
+                GetSaveState();
+            }
+        }
 
     }
 }
