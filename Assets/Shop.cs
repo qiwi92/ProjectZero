@@ -49,9 +49,9 @@ namespace Assets
 
         public void Purchase(ShopItem shopItem)
         {
-            if ( shopItem.Price <= GameControl.Control.Cash)
+            if ( shopItem.Price <= GameControl.Data.Cash)
             {
-                GameControl.Control.Cash -= shopItem.Price;
+                GameControl.Data.Cash -= shopItem.Price;
                 shopItem.NumUpgrades += 1;
                 shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.NumUpgrades);
                 SetProgessBar(shopItem);

@@ -10,7 +10,7 @@ namespace Assets
     
         void Update ()
         {
-            CashDisplayText.text = NumberFormatter.Format(GameControl.Control.Cash);
+            CashDisplayText.text = NumberFormatter.Format(GameControl.Data.Cash);
         }
     }
 }

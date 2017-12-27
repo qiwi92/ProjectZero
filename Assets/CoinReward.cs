@@ -62,7 +62,7 @@ namespace Assets
                 {
                     _collectedCoins.Add(coin);
                     coin.CollectSound.Play();
-                    GameControl.Control.Cash += 100;
+                    GameControl.Data.Cash += 100;
                 }
             }
 

@@ -142,7 +142,7 @@ namespace Assets
                     if(enemy.isDead == false)
                     {
                         enemy.isDead = true;
-                        GameControl.Control.Kills += 1;
+                        GameControl.Data.Kills += 1;
                         enemy.enemyPrefab.killAnimation.SetTrigger("Explotion");
 
                         if(distanceToPlayer < 1.5)

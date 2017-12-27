@@ -10,7 +10,7 @@ namespace Assets
 	    private NumberFormatter _numberFormatter = new NumberFormatter();
         void Update ()
         {
-            KillText.text = _numberFormatter.Format(GameControl.Control.Kills);
+            KillText.text = _numberFormatter.Format(GameControl.Data.Kills);
         }
     }
 }

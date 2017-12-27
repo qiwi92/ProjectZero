@@ -902,7 +902,7 @@
         <member name="F:DG.Tweening.PathType.CatmullRom">
             <summary>Curved path (which uses Catmull-Rom curves)</summary>
         </member>
-        <member name="T:DG.Tweening.Plugins.Core.PathCore.ControlPoint">
+        <member name="T:DG.Tweening.Plugins.Core.PathCore.DataPoint">
             <summary>
             Path control point
             </summary>
@@ -1206,7 +1206,7 @@
         </member>
         <member name="T:DG.Tweening.Sequence">
             <summary>
-            Controls other tweens as a group
+            Datas other tweens as a group
             </summary>
         </member>
         <member name="T:DG.Tweening.ShortcutExtensions">

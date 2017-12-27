@@ -7,68 +7,34 @@ namespace Assets
     
     public class GameControl:MonoBehaviour
     {
-        public static GameControl Control;
-
+        public static GameControl Data;
   
         public float Cash;
         public int Kills;
 
         void Awake()
         {
-            if (Control == null)
+            if (Data == null)
             {
                 DontDestroyOnLoad(gameObject);
-                Control = this;
+                Data = this;
             }
-            else if (Control != null)
+            else if (Data != null)
             {
                 Destroy(gameObject);
             }
-
-            Load();
         }
 
-
-        //Change when more active scenes are used
-        void OnDisable()
+        void OnGUI()
         {
-            Save();
-        }
-
-
-        public void Save()
-        {
-            BinaryFormatter binaryFormatter = new BinaryFormatter();
-            FileStream file = File.Create(Application.persistentDataPath + "/SaveGame.dat");
-
-            Data data = new Data();
-            data.Cash = Cash;
-            data.Kills = Kills;
-
-            binaryFormatter.Serialize(file,data);
-            file.Close();
-        }
-
-        public void Load()
-        {
-            if (File.Exists(Application.persistentDataPath + "/SaveGame.dat"))
+            //Delete all of the PlayerPrefs settings by pressing this Button
+            if (GUI.Button(new Rect(100, 200, 200, 60), "Reset Data"))
             {
-                BinaryFormatter binaryFormatter = new BinaryFormatter();
-                FileStream file = File.Open(Application.persistentDataPath + "/SaveGame.dat", FileMode.Open);
-                Data data = (Data) binaryFormatter.Deserialize(file);
-                file.Close();
-
-                Cash = data.Cash;
-                Kills = data.Kills;
+                Cash = 0;
+                Kills = 0;
             }
         }
 
     }
 
-    [System.Serializable]
-    class Data
-    {
-        public float Cash;
-        public int Kills;
-    }
 }
