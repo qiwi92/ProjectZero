@@ -18,6 +18,7 @@ namespace Assets
         public Sprite Icon;
         public ShopItemType ItemType;
         [HideInInspector] public Image BarImage;
+        [HideInInspector] public ArrowAnimation ArrowAnimation;
         [HideInInspector] public int Level;
         [HideInInspector] public UpgradeButton UpgradeButton;
         [HideInInspector] public GameObject Prefab;

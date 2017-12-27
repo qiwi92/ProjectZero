@@ -8,8 +8,10 @@ namespace Assets
     public class GameControl:MonoBehaviour
     {
         public static GameControl Data;
+        
   
         public float Cash;
+        public float AllTimeCash;
         public int Kills;
 
         void Awake()

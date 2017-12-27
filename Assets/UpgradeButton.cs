@@ -13,6 +13,7 @@ namespace Assets
         public Text LevelText;
         public Image Bar;
 
+        public ArrowAnimation ArrowAnimation;
 
 
 

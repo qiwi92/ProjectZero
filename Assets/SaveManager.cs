@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -28,6 +29,7 @@ namespace Assets
         private void GetSaveState()
         {
             GameControl.Data.Cash = State.Cash;
+            GameControl.Data.AllTimeCash = State.AllTimeCash;
             GameControl.Data.Kills = State.Kills;
 
             Gun.FireRateLevel = State.FireRateLevel;
@@ -63,6 +65,7 @@ namespace Assets
         public void SetSaveState()
         {
             State.Cash = GameControl.Data.Cash;
+            State.AllTimeCash = GameControl.Data.AllTimeCash;
             State.Kills = GameControl.Data.Kills;
 
             State.FireRateLevel = Gun.FireRateLevel;

@@ -30,7 +30,16 @@ namespace Assets
 
             foreach (var shopitem in ShopItems)
             {
-                shopitem.UpgradeButton.Button.onClick.AddListener(() => Purchase(shopitem));
+                shopitem.UpgradeButton.Button.onClick.AddListener(() => Purchase(shopitem));               
+            }
+        
+        }
+
+        void Update()
+        {
+            foreach (var shopitem in ShopItems)
+            {
+                PurchasableAnimation(shopitem);
             }
         }
 
@@ -63,7 +72,18 @@ namespace Assets
             }
         }
 
-  
+        public void PurchasableAnimation(ShopItem shopItem)
+        {
+            if (shopItem.Price <= GameControl.Data.Cash)
+            {
+                shopItem.ArrowAnimation.AvaialablePurchase = true;
+            }
+            else
+            {
+                shopItem.ArrowAnimation.AvaialablePurchase = false;
+            }
+        }
+
 
         public void Purchase(ShopItem shopItem)
         {
@@ -91,6 +111,7 @@ namespace Assets
             shopItem.BarImage = shopItem.UpgradeButton.Bar;
             shopItem.Prefab.transform.SetParent(ContentPanel);
 
+            shopItem.ArrowAnimation = shopItem.UpgradeButton.ArrowAnimation;
             shopItem.UpgradeButton.LevelText.text = NumberFormatter.Format(shopItem.Level);
             SetProgessBar(shopItem);
         }

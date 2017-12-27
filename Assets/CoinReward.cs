@@ -63,6 +63,7 @@ namespace Assets
                     _collectedCoins.Add(coin);
                     coin.CollectSound.Play();
                     GameControl.Data.Cash += 100;
+                    GameControl.Data.AllTimeCash += 100;
                 }
             }
 
