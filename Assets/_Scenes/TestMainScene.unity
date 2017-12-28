@@ -1122,7 +1122,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   UpgradeButtons: []
   ContentPanel: {fileID: 370659624}
-  ButtonObjectPool: {fileID: 714755271}
+  ButtonObjectPool: {fileID: 0}
   ButtonPrefab: {fileID: 1323690761159894, guid: 43ccb34cc2a937e49819b97f6332aab4,
     type: 2}
 --- !u!1 &378736686
@@ -1975,47 +1975,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 699386760}
---- !u!1 &714755270
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 5
-  m_Component:
-  - component: {fileID: 714755272}
-  - component: {fileID: 714755271}
-  m_Layer: 0
-  m_Name: UpgradeButtonObjectPool
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &714755271
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 714755270}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d4c28770e20721a46b400534e174db6d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  prefab: {fileID: 1323690761159894, guid: 43ccb34cc2a937e49819b97f6332aab4, type: 2}
---- !u!4 &714755272
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 714755270}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 531.5, y: 568, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &717558637
 GameObject:
   m_ObjectHideFlags: 0
@@ -2028,6 +1987,7 @@ GameObject:
   - component: {fileID: 717558640}
   - component: {fileID: 717558639}
   - component: {fileID: 717558642}
+  - component: {fileID: 717558643}
   m_Layer: 5
   m_Name: ShopButton
   m_TagString: Untagged
@@ -2094,7 +2054,18 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 717558640}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 717558643}
+        m_MethodName: Animate
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.UI.Button+ButtonClickedEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
 --- !u!114 &717558640
@@ -2141,11 +2112,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b22e3fe1d71a2a49a4fea3ca0ce49c6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Image: {fileID: 0}
+  Image: {fileID: 1994759132}
   Shop: {fileID: 370659627}
   PanelIsOpen: 0
   yPosUp: 0
   yPosDown: 0
+--- !u!114 &717558643
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 717558637}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2da9ef07114e90d4e8f0c10be4f7c958, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &734928814
 GameObject:
   m_ObjectHideFlags: 0
@@ -2310,10 +2292,10 @@ RectTransform:
   m_Father: {fileID: 1799063720}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 1.35, y: 835.63}
-  m_SizeDelta: {x: 261.43, y: 78.96}
+  m_AnchorMin: {x: 0.5, y: 1}
+  m_AnchorMax: {x: 0.5, y: 1}
+  m_AnchoredPosition: {x: 1.35, y: -124.369995}
+  m_SizeDelta: {x: 261.43, y: 78.95996}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &867687237
 MonoBehaviour:
@@ -2640,7 +2622,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 11
   m_LocalEulerAnglesHint: {x: -0.2, y: -50.5, z: 0}
 --- !u!1 &964733577
 GameObject:
@@ -4312,7 +4294,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 11
+  m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1750461572
 MonoBehaviour:
@@ -4998,7 +4980,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 97, y: 83}
-  m_SizeDelta: {x: 100, y: 100}
+  m_SizeDelta: {x: 70, y: 70}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1994759131
 MonoBehaviour:
@@ -5015,7 +4997,7 @@ MonoBehaviour:
   Shop: {fileID: 370659627}
   PanelIsOpen: 0
   yPosUp: 95
-  yPosDown: 80
+  yPosDown: 85
 --- !u!114 &1994759132
 MonoBehaviour:
   m_ObjectHideFlags: 0

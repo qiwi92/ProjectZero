@@ -12,6 +12,8 @@ namespace Assets
         public CameraController Camera;
         public AvailableUpgradeAnimation UpgradeAnimation;
 
+        public static bool IsAnyPanelOpen = false;
+
         [HideInInspector] public int CameraState = -1;
         [HideInInspector] public int CameraStateB = -1; 
         private Panel activePanel; 
@@ -76,6 +78,7 @@ namespace Assets
                 Camera.Move();
                 
                 CameraStateB = CameraState;
+                IsAnyPanelOpen = !IsAnyPanelOpen;
             }
 
         }

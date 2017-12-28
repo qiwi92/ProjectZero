@@ -93,7 +93,7 @@ namespace Assets
                         RandomSpeed = Random.Range(0.4f, 1.2f),
                         CollectSound = CoinAudioSource
                 };
-                    Debug.Log("Hello" + randomAngle);
+                    Debug.Log("AnimateArrow" + randomAngle);
                     Coins.Add(newCoin);
                 }
             }

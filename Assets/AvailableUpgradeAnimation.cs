@@ -18,13 +18,9 @@ namespace Assets
         public float yPosDown;
 
         // Use this for initialization
-        IEnumerator Start ()
+        void Start ()
         {
-            if (_init)
-            {
-                yield return new WaitForSeconds(1);
-                _init = false;
-            }
+  
             
             StartCoroutine(Hello());
         }
@@ -38,20 +34,20 @@ namespace Assets
 
                 foreach (var shopItem in Shop.ShopItems)
                 {
-                    if (shopItem.ArrowAnimation.AvaialablePurchase && !PanelIsOpen) 
+                    if (shopItem.ArrowAnimation.AvaialablePurchase && !UiController.IsAnyPanelOpen) 
                     {
                         _avaialablePurchase = true;
                         break;
                     }
-                    else
+                    else if (!shopItem.ArrowAnimation.AvaialablePurchase || UiController.IsAnyPanelOpen)
                     {
                         _avaialablePurchase = false;
                     }
                 }
 
-                if (_avaialablePurchase == false)
+                if (_avaialablePurchase == false || UiController.IsAnyPanelOpen)
                 {
-                    yield return Image.DOColor(new Color(0, 0, 0, 0), 0.1f).WaitForCompletion();
+                    yield return Image.DOColor(new Color(0, 0, 0, 0), 0.01f);
                 }
 
 
