@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
 using UnityEngine;
 
 namespace Assets
@@ -8,6 +10,9 @@ namespace Assets
     
         public GameObject BulletPrefab;
         public CoinReward Coins;
+
+        public GameObject CanonTube;
+        public GameObject Flare;
 
         public AudioSource laserSound;
 
@@ -24,10 +29,10 @@ namespace Assets
         private float timer = 0;
 
 
-        [HideInInspector] public EnemyController EnemyController;
-        [HideInInspector] public PlayerMovementController Player;
-        [HideInInspector] public LaserController LaserController;
-        [HideInInspector] public Cash Cash;
+        public EnemyController EnemyController;
+        public PlayerMovementController Player;
+        public LaserController LaserController;
+        public Cash Cash;
 
         private float enemySpeed;
         private Vector3 enemyVelocity;
@@ -51,6 +56,8 @@ namespace Assets
 
         void Start ()
         {
+
+
             bullets = new List<Bullet>();
             deadBullets = new List<Bullet>();
 
@@ -75,24 +82,87 @@ namespace Assets
             {
                 Enemy closestEnemy = EnemyController.enemies[closestEnemyId];
 
-                Vector3 amingDirection = Vector3.Normalize(closestEnemy.enemyPrefab.transform.position - Player.transform.position);
+                Vector3 r0 = closestEnemy.enemyPrefab.transform.position - transform.position;
 
-                bullets.Add(addBullet(amingDirection, BulletPrefab,Player));
+                var ve = EnemyController.speed;
+                var x0 =  r0.x;
+                var y0 =  r0.y;
+                var s = Vector3.Magnitude(r0);
+                var v = speedFactor;
+
+                var signY = 1;
+
+                if (y0 > 0)
+                {
+                    signY = 1;
+                }
+                else
+                {
+                    signY = -1;
+                }
+
+                //var vx = (float)(-x0 * ((ve * y0 ) -  Math.Sqrt(-Math.Pow(ve * x0, 2)+ Math.Pow(v,2)*(Math.Pow(x0, 2)+ Math.Pow(y0, 2)) )/ (Math.Pow(x0, 2) + Math.Pow(y0, 2))));
+
+
+                //Vector3 a = r0 + s / v *(new Vector3(0,-1,0))*Mathf.Abs(x0);
+
+                var vx = (x0 / Mathf.Pow(s, 2)) * (y0 * ve + v * s - Mathf.Pow(ve*x0,2)/(2*v*s)) ;
+
+                var arg = Mathf.Pow(v, 2) - Mathf.Pow(vx, 2);
+
                 
-                timer = 0;
 
-                laserSound.Play();
+                //var vy = (float) (sign * Math.Pow( (Math.Pow(v, 2) - Math.Pow(vx, 2)),0.5 ));
+                //var vy = -(float) (Math.Sqrt(Math.Pow(v, 2) - Math.Pow(vx, 2)));
+
+
+
+
+               
+
+                if (arg >0)
+                {
+                    var vy = signY * Mathf.Sqrt(arg);
+                    var amingDirection = 1/v*(new Vector3(vx, vy, 0));
+                    bullets.Add(addBullet(amingDirection, BulletPrefab));
+                    timer = 0;
+
+                    laserSound.Play();
+
+
+                    var angle = Vector3.Angle(new Vector3(1, 0, 0), amingDirection);
+                    CanonTube.transform.rotation = Quaternion.Euler(0, 0, angle - 90);
+
+                    //CanonTube.transform.DOPunchScale(new Vector3(0, 1, 0), 0.2f);
+                    CanonTube.transform.DOPunchPosition(-0.05f*amingDirection, 0.1f);
+                    Flare.transform.DOPunchScale(new Vector3(0, 0.2f, 0), 0.2f);
+
+
+                    //var rot = Quaternion.Euler(0, 0, 90);
+                }
+
+
+
+
+
 
             }
             timer += Time.deltaTime;
 
-            if (bullets.Count > 0 ) {
+
+            if (bullets.Count > 0 )
+            {
+
+                
+                    
+                    //new Vector3(0,0, Vector3.Angle(EnemyController.enemies[closestEnemyId].enemyPrefab.transform.position,
+
 
 
                 for (int i= 0;i < bullets.Count;i++)
                 {
                     
-                    var distanceFromPlayer = Vector3.Distance(bullets[i].bulletPrefab.transform.position, Player.transform.position);
+                    var distanceFromPlayer = Vector3.Distance(bullets[i].bulletPrefab.transform.position, transform.position);
 
                     if (distanceFromPlayer > bulletMaxReach)
                     {
@@ -106,7 +176,7 @@ namespace Assets
                     {
                         var distance = Vector3.Distance(bullets[i].bulletPrefab.transform.position, enemy.enemyPrefab.transform.position);
       
-                        if (distance < 0.5)
+                        if (distance < 0.3 && enemy.hp > 0)
                         {
                             deadBullets.Add(bullets[i]);
                             enemy.hp -= Gun.Damage();
@@ -124,7 +194,7 @@ namespace Assets
 
             foreach (var enemy in EnemyController.enemies)
             {
-                var distanceToPlayer = Vector3.Distance(Player.transform.position, enemy.enemyPrefab.transform.position);
+                var distanceToPlayer = Vector3.Distance(transform.position, enemy.enemyPrefab.transform.position);
 
                 if (distanceToPlayer < 1.5)
                 {
@@ -190,9 +260,9 @@ namespace Assets
         }
 
 
-        private Bullet addBullet (Vector3 direction, GameObject bulletPrefab, PlayerMovementController player)
+        private Bullet addBullet (Vector3 direction, GameObject bulletPrefab)
         {
-             return new Bullet(direction, Instantiate(bulletPrefab, player.transform.position,player.transform.rotation));
+             return new Bullet(direction, Instantiate(bulletPrefab, transform.position, transform.rotation));
         }
 
 
@@ -204,10 +274,10 @@ namespace Assets
             for (var enemyId = 0; enemyId < enemies.Length; enemyId++)
             {
                 var enemyPosition = enemies[enemyId].enemyPrefab.Transform().position;
-                var playerPosition = Player.transform.position;
+                var gunController = transform.position;
                 var offset = Vector3.up * offsetFactor;
 
-                var distance = Vector3.Distance(enemyPosition, playerPosition + offset);
+                var distance = Vector3.Distance(enemyPosition, gunController + offset);
 
                 if (distance < minDistance && distance < range && EnemyController.enemies[enemyId].isDead == false)
                 {
@@ -218,13 +288,5 @@ namespace Assets
             }
             return -1;
         }
-
-
-
     }
-
-
-
-
-
 }

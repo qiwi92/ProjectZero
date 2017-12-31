@@ -13,7 +13,8 @@ namespace Assets
         public tractorBeamController TractorBeamController;
         public LaserController LaserController;
         public PlayerMovementController PlayerMovementController;
-        public GunController GunController;
+
+
         public shieldController shieldController;
         public Enemy Enemy;
 
@@ -34,9 +35,6 @@ namespace Assets
             LaserController.Player = PlayerMovementController;
             LaserController.EnemyController = EnemyController;
 
-            GunController.Player = PlayerMovementController;
-            GunController.EnemyController = EnemyController;
-            GunController.LaserController = LaserController;
 
             shieldController.EnemyController = EnemyController;
             shieldController.Player = PlayerMovementController;

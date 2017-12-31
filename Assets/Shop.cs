@@ -121,5 +121,9 @@ namespace Assets
         {
             shopItem.BarImage.fillAmount =  ((float) shopItem.Level)/10;
         }
+        
+        
+
+    
     }
 }

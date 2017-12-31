@@ -43,6 +43,7 @@ namespace Assets
                 if (AvaialablePurchase)
                 {
                     yield return Image.DOColor(new Color(1, 1, 1, 1), 0.2f).WaitForCompletion();
+                    //yield return Image.transform.DOPunchPosition(new Vector3(0, 10, 0), 0.6f).WaitForCompletion();
                     yield return transform.DOLocalMoveY(yPosDown, 0.3f).WaitForCompletion();
                     yield return transform.DOLocalMoveY(yPosUp, 0.1f).WaitForCompletion();
                 }
