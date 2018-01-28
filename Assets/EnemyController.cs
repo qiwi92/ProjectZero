@@ -56,10 +56,10 @@ namespace Assets
         public void Reset(Enemy enemy)
         {
             float y = Random.Range(0, height / 2);
-            //float x = Random.Range(-width / 2, width / 2);
+            float x = Random.Range(-width / 2, width / 2);
 
-            sign *= -1;
-            float x = -width / 2 * 0.8f* sign;
+            //sign *= -1;
+            //float x = -width / 2 * 0.8f* sign;
 
             enemy.enemyPrefab.Transform().position = new Vector3(x, height / 2 + y, 0);
 

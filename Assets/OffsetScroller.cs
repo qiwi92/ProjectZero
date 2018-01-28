@@ -2,23 +2,27 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class OffsetScroller : MonoBehaviour {
+namespace Assets
+{
+    public class OffsetScroller : MonoBehaviour
+    {
+        public Renderer rend;
 
-    public float scrollSpeed;
+        void Start()
+        {
+            rend = GetComponent<Renderer>();
+        }
 
-    public Renderer rend;
+        void Update()
+        {
 
-	void Start () {
-        rend = GetComponent<Renderer>();
-	}
-	
+            float y = Mathf.Repeat(Time.time * GameControl.Data.Speed, 1);
+            Vector2 offset = new Vector2(0, y);
 
-	void Update () {
+            rend.material.SetTextureOffset("_MainTex", offset);
 
-        float y = Mathf.Repeat(Time.time * scrollSpeed, 1);
-        Vector2 offset = new Vector2(0, y);
-
-        rend.material.SetTextureOffset("_MainTex", offset);
-        
-	}
+        }
+    }
 }
+
+

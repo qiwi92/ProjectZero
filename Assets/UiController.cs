@@ -11,6 +11,7 @@ namespace Assets
         public List<Panel> Panels;
         public CameraController Camera;
         public AvailableUpgradeAnimation UpgradeAnimation;
+        public ProgressController ProgressController;
 
         public static bool IsAnyPanelOpen = false;
 
@@ -28,19 +29,12 @@ namespace Assets
 
             foreach (var panelll in Panels)
             {
-
                 panelll.PanelController.PanelButton.onClick.AddListener(() => ActivatePanel(panelll));
-
             }
 
             
 
 
-        }
-	
-        // Update is called once per frame
-        void Update () {
-		
         }
 
         public void ActivatePanel(Panel panel)
@@ -70,18 +64,16 @@ namespace Assets
         public void MoveCamera()
         {
             var anyPanelState = Panels.Max(x => x.State);
-            Debug.Log(anyPanelState);
 
             if (Camera.CameraState != anyPanelState)
             {
                 UpgradeAnimation.PanelIsOpen = !UpgradeAnimation.PanelIsOpen;
                 Camera.Move();
-                
+                ProgressController.ResizeProgressBar();
+
                 CameraStateB = CameraState;
                 IsAnyPanelOpen = !IsAnyPanelOpen;
             }
-
         }
-
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 namespace Assets
 {
     
-    public class GameControl:MonoBehaviour
+    public class GameControl : MonoBehaviour
     {
         public static GameControl Data;
         
@@ -13,6 +13,14 @@ namespace Assets
         public float Cash;
         public float AllTimeCash;
         public int Kills;
+
+        public float Speed;
+        public float LevelLength;
+        public float Progress;
+
+        public float currentPosition;
+
+        
 
         void Awake()
         {
@@ -26,6 +34,9 @@ namespace Assets
                 Destroy(gameObject);
             }
         }
+
+
+        
     }
 
 }

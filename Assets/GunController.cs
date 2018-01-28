@@ -135,7 +135,7 @@ namespace Assets
 
                     //CanonTube.transform.DOPunchScale(new Vector3(0, 1, 0), 0.2f);
                     CanonTube.transform.DOPunchPosition(-0.05f*amingDirection, 0.1f);
-                    Flare.transform.DOPunchScale(new Vector3(0, 0.2f, 0), 0.2f);
+                    Flare.transform.DOPunchScale(new Vector3(0, 0.2f, 0), 0.1f);
 
 
                     //var rot = Quaternion.Euler(0, 0, 90);
@@ -176,7 +176,7 @@ namespace Assets
                     {
                         var distance = Vector3.Distance(bullets[i].bulletPrefab.transform.position, enemy.enemyPrefab.transform.position);
       
-                        if (distance < 0.3 && enemy.hp > 0)
+                        if (distance < 0.15 && enemy.hp > 0)
                         {
                             deadBullets.Add(bullets[i]);
                             enemy.hp -= Gun.Damage();
